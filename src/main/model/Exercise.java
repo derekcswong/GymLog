@@ -1,6 +1,6 @@
 package model;
 
-public class Exercise {
+public class Exercise implements Saveable, Loadable{
 
     private String name;
     private int sets;
@@ -12,6 +12,16 @@ public class Exercise {
         this.weight = weight;
         this.sets = sets;
         this.reps = reps;
+    }
+
+    @Override
+    public void load(String directory) {
+
+    }
+
+    @Override
+    public void save(String directory) {
+
     }
 
     public int totalWeightLifted() {
