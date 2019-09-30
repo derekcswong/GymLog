@@ -2,36 +2,52 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class GymLogTest {
-    private GymLog gymLog1;
-    private final static LocalDate d0 = LocalDate.parse("1999-12-11");
-    private final static LocalDate d1 = LocalDate.parse("2000-10-17");
-    private final static LocalDate d2 = LocalDate.parse("2019-10-10");
-    private final static LocalDate d3 = LocalDate.parse("2020-10-11");
-
+    LocalDate ld;
+    GymLog g1;
+    ArrayList<Workout> workoutList;
+    ArrayList<Exercise> exerciseList;
+    Exercise e1;
+    Workout w1;
 
     @BeforeEach
-    public void runBefore(){
-        gymLog1 = new GymLog();
+    public void runBefore() {
+        ld = LocalDate.of(1000, 10, 10);
+        g1 = new GymLog();
+        workoutList = new ArrayList<>();
+        exerciseList = new ArrayList<>();
+        w1 = new Workout("a", exerciseList);
+        e1 = new Exercise("a", 1, 1, 1);
+        exerciseList.add(e1);
+        workoutList.add(w1);
+        g1.getGymLog().put(ld, workoutList);
+
     }
 
     @Test
-    public void testSize() {
-        assertEquals(gymLog1.size(), 0);
-
-        gymLog1.addLogEntry(d0, "cat");
-        gymLog1.addLogEntry(d1, "cat");
-        gymLog1.addLogEntry(d2, "cat");
-        gymLog1.addLogEntry(d3, "cat");
-
-        assertEquals(gymLog1.size(), 4);
+    public void saveTest() throws IOException{
+        g1.save("/Users/derek/CPSC210/project_n4q1b/outputTest");
+        List<String> outputTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/outputTest"));
+        List<String> saveTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/saveTest"));
+        assertEquals(saveTestLines, outputTestLines);
     }
 
+    @Test
+    public void loadTest() {
+        GymLog g2 = new GymLog();
+        g2.load("/Users/derek/CPSC210/project_n4q1b/saveTest");
+        assertEquals(g1.getGymLog(), g2.getGymLog());
 
+
+    }
 }
