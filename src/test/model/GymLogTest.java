@@ -36,17 +36,17 @@ public class GymLogTest {
 
     @Test
     public void saveTest() throws IOException{
-//        g1.save("/Users/derek/CPSC210/project_n4q1b/outputTest");
-//        List<String> outputTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/outputTest"));
-//        List<String> saveTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/saveTest"));
-//        assertEquals(saveTestLines, outputTestLines);
+        g1.save("/Users/derek/CPSC210/project_n4q1b/outputTest");
+        List<String> outputTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/outputTest"));
+        List<String> saveTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/saveTest"));
+        assertEquals(saveTestLines, outputTestLines);
     }
 
     @Test
     public void loadTest() {
-//        GymLog g2 = new GymLog();
-//        g2.load("/Users/derek/CPSC210/project_n4q1b/saveTest");
-//        assertEquals(g1.getGymLog(), g2.getGymLog());
+        GymLog g2 = new GymLog();
+        g2.load("/Users/derek/CPSC210/project_n4q1b/saveTest");
+        assertEquals(g1.getGymLog(), g2.getGymLog());
 
 
     }
