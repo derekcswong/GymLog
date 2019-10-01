@@ -1,6 +1,6 @@
 package model;
 
-public class Exercise implements Saveable, Loadable{
+public class Exercise implements Saveable, Loadable {
 
     private String name;
     private int sets;

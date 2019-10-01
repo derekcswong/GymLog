@@ -1,8 +1,8 @@
 package model;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+//import com.google.gson.reflect.TypeToken;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -30,26 +30,26 @@ public class GymLog implements Saveable, Loadable {
 
     @Override
     public void save(String directory) {
-        try (FileWriter writer = new FileWriter(directory)) {
-            Gson gson = new GsonBuilder()
-                    .setPrettyPrinting()
-                    .enableComplexMapKeySerialization()
-                    .create();
-            gson.toJson(gymLog, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try (FileWriter writer = new FileWriter(directory)) {
+//            Gson gson = new GsonBuilder()
+//                    .setPrettyPrinting()
+//                    .enableComplexMapKeySerialization()
+//                    .create();
+//            gson.toJson(gymLog, writer);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
     public void load(String directory) {
-        try (FileReader reader = new FileReader(directory)) {
-            Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
-            }.getType();
-            gymLog = new Gson().fromJson(reader, mapType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try (FileReader reader = new FileReader(directory)) {
+//            Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
+//            }.getType();
+//            gymLog = new Gson().fromJson(reader, mapType);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     //EFFECTS: set is empty
