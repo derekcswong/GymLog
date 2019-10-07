@@ -22,10 +22,7 @@ public class CardioExercise extends Exercise {
 
     @Override
     public void printExerciseDetails() {
-        System.out.println("name");
-        System.out.println("distance: " + distance);
-        System.out.println("time: " + time);
-        System.out.println("pace: " + this.getPace());
+        System.out.println(name + distance + time);
     }
 
     @Override

@@ -18,10 +18,7 @@ public class WeightExercise extends Exercise {
 
     @Override
     public void printExerciseDetails() {
-        System.out.println("name");
-        System.out.println("weight: " + weight);
-        System.out.println("sets: " + sets);
-        System.out.println("reps: " + reps);
+        System.out.println(name + "weight: " + weight + "sets: " + sets + "reps: " + reps);
     }
 
     @Override

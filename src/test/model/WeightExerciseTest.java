@@ -36,4 +36,9 @@ public class WeightExerciseTest {
         w0.changeName("deadlift");
         assertEquals(w0.getName(), "deadlift");
     }
+
+    @Test
+    public void printExerciseDetails(){
+        w0.printExerciseDetails();
+    }
 }

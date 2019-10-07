@@ -35,4 +35,9 @@ public class CardioExerciseTest {
         c0.changeName("Skipping Rope");
         assertEquals(c0.getName(), "Skipping Rope");
     }
+
+    @Test
+    public void printExerciseDetails(){
+        c0.printExerciseDetails();
+    }
 }
