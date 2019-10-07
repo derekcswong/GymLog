@@ -1,6 +1,8 @@
-package model;
+package ui;
 
 import com.google.gson.*;
+import model.Exercise;
+
 import java.lang.reflect.Type;
 
 //code used from https://www.javacodegeeks.com/2012/04/json-with-gson-and-abstract-classes.html
