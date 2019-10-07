@@ -2,6 +2,8 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.GymLog;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,11 +29,10 @@ public class GymLogTest {
         workoutList = new ArrayList<>();
         exerciseList = new ArrayList<>();
         w1 = new Workout("a", exerciseList);
-        e1 = new Exercise("a", 1, 1, 1);
+        e1 = new WeightExercise("a", 1, 1, 1);
         exerciseList.add(e1);
         workoutList.add(w1);
         g1.getGymLog().put(ld, workoutList);
-
     }
 
     @Test
@@ -47,7 +48,5 @@ public class GymLogTest {
         GymLog g2 = new GymLog();
         g2.load("/Users/derek/CPSC210/project_n4q1b/saveTest");
         assertEquals(g1.getGymLog(), g2.getGymLog());
-
-
     }
 }

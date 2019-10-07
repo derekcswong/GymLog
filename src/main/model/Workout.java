@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Workout {
 
@@ -14,16 +13,4 @@ public class Workout {
         this.category = cat;
         this.exerciseList = exList;
     }
-
-    //MODIFIES: this
-    //EFFECTS: adds Exercise to exerciseList
-    public void addExercise(String name, int weight, int reps, int sets) {
-        exerciseList.add(new Exercise(name, weight, reps, sets));
-    }
-
-    //EFFECTS: returns the number of exercises in this workout
-    public int numOfExercises() {
-        return exerciseList.size();
-    }
-
 }

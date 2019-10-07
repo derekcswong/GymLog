@@ -3,29 +3,19 @@
     {
       "year": 1000,
       "month": 10,
-      "day": 12
-    },
-    [
-      {
-        "exerciseList": [],
-        "category": "leg"
-      }
-    ]
-  ],
-  [
-    {
-      "year": 1000,
-      "month": 10,
       "day": 10
     },
     [
       {
         "exerciseList": [
           {
-            "name": "a",
-            "sets": 1,
-            "weight": 1,
-            "reps": 1
+            "type": "WeightExercise",
+            "properties": {
+              "sets": 1,
+              "weight": 1,
+              "reps": 1,
+              "name": "a"
+            }
           }
         ],
         "category": "a"
@@ -33,24 +23,43 @@
       {
         "exerciseList": [
           {
-            "name": "3",
-            "sets": 3,
-            "weight": 3,
-            "reps": 3
+            "type": "CardioExercise",
+            "properties": {
+              "distance": 100.0,
+              "time": {
+                "hour": 1,
+                "minute": 15,
+                "second": 30,
+                "nano": 0
+              },
+              "name": "treadmill"
+            }
           }
         ],
-        "category": "legs"
-      },
+        "category": "arms"
+      }
+    ]
+  ],
+  [
+    {
+      "year": 2019,
+      "month": 10,
+      "day": 10
+    },
+    [
       {
         "exerciseList": [
           {
-            "name": "t",
-            "sets": 1,
-            "weight": 1,
-            "reps": 1
+            "type": "WeightExercise",
+            "properties": {
+              "sets": 100,
+              "weight": 10,
+              "reps": 10,
+              "name": "squats"
+            }
           }
         ],
-        "category": "legs"
+        "category": "arms"
       }
     ]
   ]

@@ -1,46 +1,26 @@
 package model;
 
-public class Exercise implements Saveable, Loadable {
+public abstract class Exercise {
 
-    private String name;
-    private int sets;
-    private int weight;
-    private int reps;
+    protected String name;
 
-    public Exercise(String name, int weight, int sets, int reps) {
+    public Exercise(String name) {
         this.name = name;
-        this.weight = weight;
-        this.sets = sets;
-        this.reps = reps;
     }
 
-    @Override
-    public void load(String directory) {
-
+    //MODIFIES: this
+    //EFFECTS: changes name of exercise
+    public void changeName(String s) {
+        this.name = s;
     }
 
-    @Override
-    public void save(String directory) {
+    //EFFECTS: prints exercise details
+    public abstract void printExerciseDetails();
 
-    }
-
-    public int totalWeightLifted() {
-        return this.weight * sets * reps;
-    }
+    //EFFECTS: instantiates new exercise with the same values and returns it
+    public abstract Exercise copy();
 
     public String getName() {
         return name;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public int getSets() {
-        return sets;
     }
 }

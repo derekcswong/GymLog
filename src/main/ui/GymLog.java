@@ -1,14 +1,17 @@
-package model;
+package ui;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import model.*;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -18,7 +21,8 @@ public class GymLog implements Saveable, Loadable {
     private static final String CMD_NEW = "new";
     private static final String CMD_QUIT = "quit";
     private static final String CMD_VIEW = "view";
-    private static final String CMD_ADD = "add";
+    private static final String CMD_ADD_CARDIO = "cardio";
+    private static final String CMD_ADD_WEIGHT = "weight";
     private static final String CMD_BACK = "back";
     private static final String CMD_CONTINUE = "continue";
     private static final String CMD_SAVE = "save";
@@ -34,6 +38,7 @@ public class GymLog implements Saveable, Loadable {
             Gson gson = new GsonBuilder()
                     .setPrettyPrinting()
                     .enableComplexMapKeySerialization()
+                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
                     .create();
             gson.toJson(this.gymLog, writer);
         } catch (IOException e) {
@@ -46,7 +51,10 @@ public class GymLog implements Saveable, Loadable {
         try (FileReader reader = new FileReader(directory)) {
             Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
             }.getType();
-            gymLog = new Gson().fromJson(reader, mapType);
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
+                    .create();
+            gymLog = gson.fromJson(reader, mapType);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,19 +154,41 @@ public class GymLog implements Saveable, Loadable {
         while (true) {
             createExercisesCommands();
             String input2 = scanner.nextLine();
-            if (input2.equals(CMD_ADD)) {
-                System.out.println("Enter new exercise name: ");
-                String name = scanner.nextLine();
-                System.out.println("Weight (lbs): ");
-                int weight = Integer.parseInt(scanner.nextLine());
-                System.out.println("How many sets: ");
-                int sets = Integer.parseInt(scanner.nextLine());
-                System.out.println("How many reps: ");
-                int reps = Integer.parseInt(scanner.nextLine());
-                exerciseList.add(new Exercise(name, weight, sets, reps));
+            if (input2.equals(CMD_ADD_CARDIO)) {
+                exerciseList.add(askForCardioExercise());
+            } else if (input2.equals(CMD_ADD_WEIGHT)) {
+                exerciseList.add(askForWeightExercise());
             } else if (input2.equals(CMD_BACK)) {
                 return exerciseList;
             }
+        }
+    }
+
+    //EFFECTS: ask user for CardioExercise details and returns CardioExercise
+    private CardioExercise askForCardioExercise() {
+        while (true) {
+            System.out.println("Enter exercise name: ");
+            String name = scanner.nextLine();
+            System.out.println("Distance Travelled (meters): ");
+            double distance = Double.parseDouble(scanner.nextLine());
+            System.out.println("Time in (HH:MM:SS) ");
+            LocalTime time = LocalTime.parse(scanner.nextLine(), DateTimeFormatter.ofPattern("HH:mm:ss"));
+            return new CardioExercise(name, distance, time);
+        }
+    }
+
+    //EFFECTS: ask user for WeightExercise details and returns WeightExercise
+    private WeightExercise askForWeightExercise() {
+        while (true) {
+            System.out.println("Enter exercise name: ");
+            String name = scanner.nextLine();
+            System.out.println("Weight (lbs): ");
+            int weight = Integer.parseInt(scanner.nextLine());
+            System.out.println("How many sets: ");
+            int sets = Integer.parseInt(scanner.nextLine());
+            System.out.println("How many reps: ");
+            int reps = Integer.parseInt(scanner.nextLine());
+            return new WeightExercise(name, weight, sets, reps);
         }
     }
 
@@ -177,7 +207,8 @@ public class GymLog implements Saveable, Loadable {
 
     //EFFECTS: print commands when users adding exercises
     private void createExercisesCommands() {
-        System.out.println("Enter '" + CMD_ADD + "' to add new exercise.");
+        System.out.println("Enter '" + CMD_ADD_CARDIO + "' to add new cardio exercise.");
+        System.out.println("Enter '" + CMD_ADD_WEIGHT + "' to add new weight exercise.");
         System.out.println("Enter '" + CMD_BACK + "' to go back to main menu.");
     }
 
