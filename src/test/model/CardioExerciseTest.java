@@ -37,7 +37,10 @@ public class CardioExerciseTest {
     }
 
     @Test
-    public void printExerciseDetails(){
-        c0.printExerciseDetails();
+    public void exerciseDetailsString(){
+        String c0String = ("name: " + "treadmill"
+                + "\nweight: " + "50.0"
+                + "\nsets: " + "01:01:30");
+        assertTrue(c0String.equals(c0.exerciseDetailsString()));
     }
 }

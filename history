@@ -9,7 +9,7 @@
       {
         "exerciseList": [
           {
-            "type": "WeightExercise",
+            "exercise type": "WeightExercise",
             "properties": {
               "sets": 1,
               "weight": 1,
@@ -19,47 +19,6 @@
           }
         ],
         "category": "a"
-      },
-      {
-        "exerciseList": [
-          {
-            "type": "CardioExercise",
-            "properties": {
-              "distance": 100.0,
-              "time": {
-                "hour": 1,
-                "minute": 15,
-                "second": 30,
-                "nano": 0
-              },
-              "name": "treadmill"
-            }
-          }
-        ],
-        "category": "arms"
-      }
-    ]
-  ],
-  [
-    {
-      "year": 2019,
-      "month": 10,
-      "day": 10
-    },
-    [
-      {
-        "exerciseList": [
-          {
-            "type": "WeightExercise",
-            "properties": {
-              "sets": 100,
-              "weight": 10,
-              "reps": 10,
-              "name": "squats"
-            }
-          }
-        ],
-        "category": "arms"
       }
     ]
   ]

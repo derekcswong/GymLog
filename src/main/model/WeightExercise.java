@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.NegativeWeightException;
+
 public class WeightExercise extends Exercise {
     private int sets;
     private int weight;
@@ -12,13 +14,22 @@ public class WeightExercise extends Exercise {
         this.reps = r;
     }
 
-    public int totalWeightLifted() {
-        return weight * reps * sets;
+    public int totalWeightLifted() throws NegativeWeightException {
+        int totalWeight = weight * reps * sets;
+        if (totalWeight < 0) {
+            throw new NegativeWeightException();
+        } else {
+            return totalWeight;
+        }
     }
 
+
     @Override
-    public void printExerciseDetails() {
-        System.out.println(name + "weight: " + weight + "sets: " + sets + "reps: " + reps);
+    public String exerciseDetailsString() {
+        return ("name: " + String.valueOf(name)
+                + "\nweight: " + String.valueOf(weight)
+                + "\nsets: " + String.valueOf(sets)
+                + "\nreps: " + String.valueOf(reps));
     }
 
     @Override

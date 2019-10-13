@@ -1,5 +1,8 @@
 package ui;
 
+import exceptions.NotAnExerciseTypeException;
+import exceptions.NotCommandException;
+import gsonadapters.AbstractExerciseAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -12,6 +15,7 @@ import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -69,15 +73,19 @@ public class GymLog implements Saveable, Loadable {
     //EFFECTS: takes user history then performs specific methods depending on history.
     public void handleInput() {
         while (true) {
-            System.out.println(gymLog.entrySet());
+//            System.out.println(gymLog.entrySet());
             mainMenuCommands();
             String input = scanner.nextLine();
             if (input.equals(CMD_NEW)) {
-                createWorkout();
+                try {
+                    createWorkout();
+                } catch (NotCommandException e) {
+                    System.out.println("Not a Command!");
+                }
             } else if (input.equals(CMD_QUIT)) {
                 System.exit(0);
-            } else if (input.equals(CMD_VIEW)) {
-                System.out.println("You have gone to the gym " + this.size() + " days so far\n");
+//            } else if (input.equals(CMD_VIEW)) {
+//                System.out.println("You have gone to the gym " + this.size() + " days so far\n");
             } else if (input.equals(CMD_SAVE)) {
                 save("/Users/derek/CPSC210/project_n4q1b/history");
             } else {
@@ -88,19 +96,20 @@ public class GymLog implements Saveable, Loadable {
 
     //MODIFIES: logEntries
     //EFFECTS: will create new Workouts with a Date and a category given user inputs
-    private void createWorkout() {
+    private void createWorkout() throws NotCommandException {
         String c;
         date = askForDate();
         while (gymLog.containsKey(date)) {
             System.out.println("Enter '" + CMD_CONTINUE + "' to add another Workout to " + date);
-            System.out.println("Enter '" + CMD_BACK + "' to go back to main menu.");
+//            System.out.println("Enter '" + CMD_BACK + "' to go back to main menu.");
             String input = scanner.nextLine();
             if (input.equals(CMD_CONTINUE)) {
                 c = askForCategory();
                 addWorkout(date, c);
                 break;
-            } else if (input.equals(CMD_BACK)) {
-                break;
+            } else {
+//                if (input.equals(CMD_BACK)) {
+                throw new NotCommandException();
             }
         }
         if (!gymLog.containsKey(date)) {
@@ -109,7 +118,7 @@ public class GymLog implements Saveable, Loadable {
         }
     }
 
-    //MODIFIES: this?? b/c it modifies date...
+    //MODIFIES: this
     //EFFECTS: asks user for date and returns in LocalDate format yyyy-mm-dd
     private LocalDate askForDate() {
         System.out.println("Enter a date 'yyyy-mm-dd':");
@@ -119,8 +128,10 @@ public class GymLog implements Saveable, Loadable {
                 String d = scanner.nextLine();
                 date = LocalDate.parse(d);
                 break;
-            } catch (Exception e) {
+            } catch (DateTimeParseException e) {
                 System.out.println("Sorry, that is an invalid date. Please try again.");
+            } finally {
+                System.out.println("finally clause");
             }
         }
         return date;
@@ -136,7 +147,11 @@ public class GymLog implements Saveable, Loadable {
     //MODIFIES: this, workoutList?
     //EFFECTS: adds Workout to key ld in gymLog
     private void addWorkout(LocalDate ld, String c) {
-        exerciseList = createExerciseList();
+        try {
+            exerciseList = createExerciseList();
+        } catch (NotAnExerciseTypeException e) {
+            System.out.println("Not an Excercise Type!");
+        }
         ArrayList<Workout> workoutList = gymLog.get(ld);
         if (workoutList == null) {
             workoutList = new ArrayList<>();
@@ -149,7 +164,7 @@ public class GymLog implements Saveable, Loadable {
 
     //EFFECTS: Exercise(s) are created with user inputs for weight, sets, reps, and name.
     //returns list of Exercises
-    private ArrayList<Exercise> createExerciseList() {
+    private ArrayList<Exercise> createExerciseList() throws NotAnExerciseTypeException {
         exerciseList = new ArrayList<>();
         while (true) {
             createExercisesCommands();
@@ -160,6 +175,8 @@ public class GymLog implements Saveable, Loadable {
                 exerciseList.add(askForWeightExercise());
             } else if (input2.equals(CMD_BACK)) {
                 return exerciseList;
+            } else {
+                throw new NotAnExerciseTypeException();
             }
         }
     }

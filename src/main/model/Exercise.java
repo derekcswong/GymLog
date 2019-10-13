@@ -14,8 +14,8 @@ public abstract class Exercise {
         this.name = s;
     }
 
-    //EFFECTS: prints exercise details
-    public abstract void printExerciseDetails();
+    //EFFECTS: convert exercise details to string
+    public abstract String exerciseDetailsString();
 
     //EFFECTS: instantiates new exercise with the same values and returns it
     public abstract Exercise copy();

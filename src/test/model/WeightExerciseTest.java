@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NegativeWeightException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ public class WeightExerciseTest {
 
     WeightExercise w0;
     WeightExercise w1;
+    WeightExercise w2;
 
     @BeforeEach
     public void runBefore() {
@@ -16,8 +18,23 @@ public class WeightExerciseTest {
     }
 
     @Test
-    public void totalWeightLiftedTest() {
-        assertEquals(w0.totalWeightLifted(), 100 * 5 * 5);
+    public void totalWeightLiftedTestNothingThrown() {
+        try {
+           w0.totalWeightLifted();
+           assertEquals(w0.totalWeightLifted(), 100 * 5 * 5);
+        } catch (NegativeWeightException e) {
+            fail("caught NegativeWeight Exception");
+        }
+    }
+
+    @Test
+    //expecting negative weight exception
+    public void negativeWeightExceptionTest() {
+        w2 = new WeightExercise("deadlift", -2, -2, -2);
+        try {
+            w2.totalWeightLifted();
+            fail("negative weight exception not thrown");
+        } catch (NegativeWeightException e) {}
     }
 
     @Test
@@ -38,7 +55,11 @@ public class WeightExerciseTest {
     }
 
     @Test
-    public void printExerciseDetails(){
-        w0.printExerciseDetails();
+    public void exerciseDetailsString(){
+        String w0String = ("name: " + "squat"
+                + "\nweight: " + "100"
+                + "\nsets: " + "5"
+                + "\nreps: " + "5");
+        assertTrue(w0String.equals(w0.exerciseDetailsString()));
     }
 }

@@ -49,4 +49,5 @@ public class GymLogTest {
         g2.load("/Users/derek/CPSC210/project_n4q1b/saveTest");
         assertEquals(g1.getGymLog(), g2.getGymLog());
     }
+
 }
