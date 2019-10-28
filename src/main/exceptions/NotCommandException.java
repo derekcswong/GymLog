@@ -1,4 +1,4 @@
 package exceptions;
 
-public class NotCommandException extends Throwable {
+public class NotCommandException extends Exception {
 }

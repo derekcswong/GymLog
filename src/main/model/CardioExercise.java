@@ -22,8 +22,8 @@ public class CardioExercise extends Exercise {
 
     @Override
     public String exerciseDetailsString() {
-        return ("name: " + String.valueOf(name)
-                + "\nweight: " + String.valueOf(distance)
+        return ("name: " + name
+                + "\nweight: " + distance
                 + "\nsets: " + time.toString());
     }
 

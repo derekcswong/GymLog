@@ -1,4 +1,4 @@
 package exceptions;
 
-public class NotAnExerciseTypeException extends Throwable {
+public class NotAnExerciseTypeException extends Exception {
 }

@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//citation: https://www.baeldung.com/gson-json-to-map,
+// http://www.studytrails.com/java/json/java-google-json-custom-serializer-deserializer/
 
 public class GymLog implements Saveable, Loadable {
     private static final String CMD_NEW = "new";
@@ -35,6 +37,9 @@ public class GymLog implements Saveable, Loadable {
     private ArrayList<Exercise> exerciseList;
     private Scanner scanner = new Scanner(System.in);
 
+    public GymLog() {
+        gymLog = new HashMap<>();
+    }
 
     @Override
     public void save(String directory) {
@@ -64,11 +69,6 @@ public class GymLog implements Saveable, Loadable {
         }
     }
 
-    //EFFECTS: set is empty
-    public GymLog() {
-        gymLog = new HashMap<>();
-    }
-
     //logEntries?
     //EFFECTS: takes user history then performs specific methods depending on history.
     public void handleInput() {
@@ -93,6 +93,9 @@ public class GymLog implements Saveable, Loadable {
             }
         }
     }
+
+//    public void removeWorkout(LocalDate ld, )
+
 
     //MODIFIES: logEntries
     //EFFECTS: will create new Workouts with a Date and a category given user inputs
@@ -130,8 +133,6 @@ public class GymLog implements Saveable, Loadable {
                 break;
             } catch (DateTimeParseException e) {
                 System.out.println("Sorry, that is an invalid date. Please try again.");
-            } finally {
-                System.out.println("finally clause");
             }
         }
         return date;

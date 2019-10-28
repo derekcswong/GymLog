@@ -1,4 +1,4 @@
 package exceptions;
 
-public class NegativeWeightException extends Throwable {
+public class NegativeWeightException extends Exception {
 }

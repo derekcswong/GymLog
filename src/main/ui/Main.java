@@ -1,7 +1,5 @@
 package ui;
 
-import exceptions.NotCommandException;
-
 public class Main {
     public static void main(String[] args) {
         GymLog g = new GymLog();

@@ -4,6 +4,8 @@ import com.google.gson.*;
 import model.Exercise;
 
 import java.lang.reflect.Type;
+//citation: https://www.baeldung.com/gson-json-to-map
+// http://www.studytrails.com/java/json/java-google-json-custom-serializer-deserializer/
 
 public class AbstractExerciseAdapter implements JsonSerializer<Exercise>, JsonDeserializer<Exercise> {
     @Override

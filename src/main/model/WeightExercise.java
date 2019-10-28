@@ -26,10 +26,10 @@ public class WeightExercise extends Exercise {
 
     @Override
     public String exerciseDetailsString() {
-        return ("name: " + String.valueOf(name)
-                + "\nweight: " + String.valueOf(weight)
-                + "\nsets: " + String.valueOf(sets)
-                + "\nreps: " + String.valueOf(reps));
+        return ("name: " + name
+                + "\nweight: " + weight
+                + "\nsets: " + sets
+                + "\nreps: " + reps);
     }
 
     @Override

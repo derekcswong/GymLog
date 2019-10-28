@@ -19,6 +19,20 @@
           }
         ],
         "category": "a"
+      },
+      {
+        "exerciseList": [
+          {
+            "exercise type": "WeightExercise",
+            "properties": {
+              "sets": 10,
+              "weight": 10,
+              "reps": 10,
+              "name": "squat"
+            }
+          }
+        ],
+        "category": "legs"
       }
     ]
   ]
