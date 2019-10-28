@@ -58,8 +58,12 @@ public abstract class Exercise {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Exercise exercise = (Exercise) o;
         return Objects.equals(name, exercise.name);
     }
