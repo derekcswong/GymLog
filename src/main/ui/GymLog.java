@@ -1,7 +1,7 @@
 package ui;
 
-import exceptions.NotAnExerciseTypeException;
-import exceptions.NotCommandException;
+import ui.exceptions.NotAnExerciseTypeException;
+import ui.exceptions.NotCommandException;
 import gsonadapters.AbstractExerciseAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

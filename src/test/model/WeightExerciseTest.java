@@ -1,6 +1,6 @@
 package model;
 
-import exceptions.NegativeWeightException;
+import ui.exceptions.NegativeWeightException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

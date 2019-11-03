@@ -1,6 +1,6 @@
 package model;
 
-import exceptions.NegativeWeightException;
+import ui.exceptions.NegativeWeightException;
 
 public class WeightExercise extends Exercise {
     private int sets;
