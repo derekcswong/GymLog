@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ui.GymLog;
+import ui.Workout;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,9 +29,10 @@ public class GymLogTest {
         g1 = new GymLog();
         workoutList = new ArrayList<>();
         exerciseList = new ArrayList<>();
-        w1 = new Workout("a", exerciseList);
         e1 = new WeightExercise("a", 1, 1, 1);
         exerciseList.add(e1);
+        w1 = new Workout("a");
+        w1.setExerciseList(exerciseList);
         workoutList.add(w1);
         g1.getGymLog().put(ld, workoutList);
     }
