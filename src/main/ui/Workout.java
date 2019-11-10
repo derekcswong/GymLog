@@ -1,7 +1,6 @@
 package ui;
 
 
-import model.Subject;
 import ui.exceptions.NotAnExerciseTypeException;
 import model.CardioExercise;
 import model.Exercise;
