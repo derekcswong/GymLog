@@ -2,7 +2,7 @@ package ui;
 
 import ui.exceptions.NotAnExerciseTypeException;
 import ui.exceptions.NotCommandException;
-import gsonadapters.AbstractExerciseAdapter;
+import ui.gsonadapters.AbstractExerciseAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -67,12 +67,11 @@ public class GymLog extends Subject implements Saveable, Loadable {
     private void createWorkout() throws NotCommandException {
         date = askForDate();
         //doesn't loop ever??
-        while (gymLog.containsKey(date)) {
+        if (gymLog.containsKey(date)) {
             System.out.println("Enter '" + CMD_CONTINUE + "' to add another Workout to " + date);
             String input = scanner.nextLine();
             if (input.equals(CMD_CONTINUE)) {
                 addWorkout(date);
-                break;
             } else {
                 throw new NotCommandException();
             }

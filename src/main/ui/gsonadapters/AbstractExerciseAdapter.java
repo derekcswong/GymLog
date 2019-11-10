@@ -1,4 +1,4 @@
-package gsonadapters;
+package ui.gsonadapters;
 
 import com.google.gson.*;
 import model.Exercise;
