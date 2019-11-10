@@ -21,7 +21,7 @@ import java.util.Scanner;
 //citation: https://www.baeldung.com/gson-json-to-map,
 // http://www.studytrails.com/java/json/java-google-json-custom-serializer-deserializer/
 
-public class GymLog implements Saveable, Loadable {
+public class GymLog extends Subject implements Saveable, Loadable {
     private static final String CMD_NEW = "new";
     private static final String CMD_QUIT = "quit";
     private static final String CMD_VIEW = "view";
@@ -33,6 +33,7 @@ public class GymLog implements Saveable, Loadable {
 
     public GymLog() {
         gymLog = new HashMap<>();
+        observers.add(new ConcreteObserver());
     }
 
     //EFFECTS: takes user history then performs specific methods depending on history.
@@ -85,7 +86,8 @@ public class GymLog implements Saveable, Loadable {
     //MODIFIES: this, workoutList?
     //EFFECTS: adds Workout to key ld in gymLog
     private void addWorkout(LocalDate ld) {
-        Workout nw = new Workout(askForCategory());
+        String c = askForCategory();
+        Workout nw = new Workout(c);
         if (gymLog.get(ld).contains(nw)) {
             System.out.println("workout already exists on this day");
             //want to make any changes to existing workout??
@@ -97,6 +99,8 @@ public class GymLog implements Saveable, Loadable {
                 System.out.println("Not an Exercise Type.");
             }
         }
+        //notify concrete observer that workout has been added
+        notifyObservers(ld, c);
     }
 
     //MODIFIES: this
