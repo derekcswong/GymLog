@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.GymLog;
 import ui.Workout;
 
 import java.io.IOException;
@@ -97,5 +98,4 @@ public class GymLogTest {
         g2.load("/Users/derek/CPSC210/project_n4q1b/saveTest");
         assertEquals(g1.getGymLog(), g2.getGymLog());
     }
-
 }
