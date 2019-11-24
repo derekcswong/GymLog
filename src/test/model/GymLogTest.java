@@ -2,6 +2,7 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ui.GymLog;
 import ui.Workout;
 
 import java.io.IOException;
@@ -68,6 +69,11 @@ public class GymLogTest {
         assertTrue(g1String.equals(g1.workoutListToString(ld)));
     }
 
+    @Test void workoutListToStringNullPointerExecption() {
+        String g0String = ("No Workouts Recorded.");
+        assertTrue(g0String.equals(g0.workoutListToString(ld)));
+    }
+
     @Test
     public void saveTest(){
         g1.save("/Users/derek/CPSC210/project_n4q1b/outputTest");
@@ -75,14 +81,12 @@ public class GymLogTest {
         try {
             outputTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/outputTest"));
         } catch (IOException e) {
-            e.printStackTrace();
             fail();
         }
         List<String> saveTestLines = null;
         try {
             saveTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/saveTest"));
         } catch (IOException e) {
-            e.printStackTrace();
             fail();
         }
         assertEquals(saveTestLines, outputTestLines);
