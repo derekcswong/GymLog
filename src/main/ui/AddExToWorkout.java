@@ -1,5 +1,6 @@
 package ui;
 
+import model.GymLog;
 import model.WeightExercise;
 
 import javax.sound.sampled.AudioInputStream;

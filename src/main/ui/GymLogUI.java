@@ -1,5 +1,6 @@
 package ui;
 
+import model.GymLog;
 import ui.network.ReadWebPage;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;

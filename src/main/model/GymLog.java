@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import ui.StatTracker;
 import ui.Workout;
