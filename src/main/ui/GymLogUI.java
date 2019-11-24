@@ -1,5 +1,6 @@
 package ui;
 
+import model.GymLog;
 import ui.network.ReadWebPage;
 import org.jdatepicker.impl.DateComponentFormatter;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -38,7 +39,7 @@ public class GymLogUI {
 
     private GymLogUI() {
         gl = new GymLog();
-        gl.load("/Users/derek/CPSC210/project_n4q1b/history");
+//        gl.load("/Users/derek/CPSC210/project_n4q1b/history");
         setQuoteOfTheDay();
         datePicker();
         addWorkoutButton.addActionListener(new ActionListener() {
@@ -56,7 +57,7 @@ public class GymLogUI {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gl.save("/Users/derek/CPSC210/project_n4q1b/history");
+//                gl.save("/Users/derek/CPSC210/project_n4q1b/history");
             }
         });
     }

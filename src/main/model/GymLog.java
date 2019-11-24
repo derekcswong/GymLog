@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import ui.StatTracker;
 import ui.Workout;
@@ -20,7 +20,7 @@ import java.util.Observable;
 //citation: https://www.baeldung.com/gson-json-to-map,
 // http://www.studytrails.com/java/json/java-google-json-custom-serializer-deserializer/
 
-public class GymLog extends Observable implements Saveable, Loadable {
+public class GymLog extends Observable {
     private HashMap<LocalDate, ArrayList<Workout>> gymLog;
 
     public GymLog() {
@@ -67,34 +67,32 @@ public class GymLog extends Observable implements Saveable, Loadable {
         return gymLog.get(ld);
     }
 
-    @Override
-    //EFFECTS: saves gymLog as json
-    public void save(String directory) {
-        try (FileWriter writer = new FileWriter(directory)) {
-            Gson gson = new GsonBuilder()
-                    .setPrettyPrinting()
-                    .enableComplexMapKeySerialization()
-                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
-                    .create();
-            gson.toJson(this.gymLog, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    //EFFECTS: takes json file and converts it into gymLog format HashMap<LocalDate, ArrayList<Workout>>
-    public void load(String directory) {
-        try (FileReader reader = new FileReader(directory)) {
-            Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
-            }.getType();
-            Gson gson = new GsonBuilder()
-                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
-                    .create();
-            gymLog = gson.fromJson(reader, mapType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    //EFFECTS: saves gymLog as json
+//    public void save(String directory) {
+//        try (FileWriter writer = new FileWriter(directory)) {
+//            Gson gson = new GsonBuilder()
+//                    .setPrettyPrinting()
+//                    .enableComplexMapKeySerialization()
+//                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
+//                    .create();
+//            gson.toJson(this.gymLog, writer);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    //EFFECTS: takes json file and converts it into gymLog format HashMap<LocalDate, ArrayList<Workout>>
+//    public void load(String directory) {
+//        try (FileReader reader = new FileReader(directory)) {
+//            Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
+//            }.getType();
+//            Gson gson = new GsonBuilder()
+//                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
+//                    .create();
+//            gymLog = gson.fromJson(reader, mapType);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }
