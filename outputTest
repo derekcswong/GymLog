@@ -12,7 +12,7 @@
             "exercise type": "WeightExercise",
             "properties": {
               "sets": 1,
-              "weight": 1,
+              "weight": 1.0,
               "reps": 1,
               "name": "a"
             }

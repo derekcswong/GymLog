@@ -21,22 +21,10 @@ public class CardioExercise extends Exercise {
     }
 
     @Override
-    public String exerciseDetailsString() {
-        return ("name: " + name
-                + "\nweight: " + distance
-                + "\nsets: " + time.toString());
+    public String exerciseToString() {
+        return ("\t" + "Exercise Name: " + name
+                + "\n\t\tDistance: " + distance
+                + "\n\t\tTime: " + time.toString());
     }
 
-    @Override
-    public CardioExercise copy() {
-        return new CardioExercise(name, distance, time);
-    }
-
-    public double getDistance() {
-        return distance;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
 }

@@ -1,8 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 public abstract class Exercise {
 
     protected String name;
@@ -18,12 +15,11 @@ public abstract class Exercise {
     }
 
     //EFFECTS: convert exercise details to string
-    public abstract String exerciseDetailsString();
-
-    //EFFECTS: instantiates new exercise with the same values and returns it
-    public abstract Exercise copy();
+    public abstract String exerciseToString();
 
     public String getName() {
         return name;
     }
+
+
 }

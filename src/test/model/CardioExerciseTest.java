@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CardioExerciseTest {
 
     CardioExercise c0;
-    CardioExercise c1;
 
     @BeforeEach
     public void runBefore() {
@@ -22,14 +21,6 @@ public class CardioExerciseTest {
     }
 
     @Test
-    public void copyTest() {
-        c1 = c0.copy();
-        assertEquals(c1.getName(),c0.getName());
-        assertEquals(c1.getDistance(),c0.getDistance());
-        assertEquals(c1.getTime(),c0.getTime());
-    }
-
-    @Test
     public void changeName(){
         assertNotEquals(c0.getName(), "Skipping Rope");
         c0.changeName("Skipping Rope");
@@ -37,10 +28,10 @@ public class CardioExerciseTest {
     }
 
     @Test
-    public void exerciseDetailsString(){
-        String c0String = ("name: " + "treadmill"
-                + "\nweight: " + "50.0"
-                + "\nsets: " + "01:01:30");
-        assertTrue(c0String.equals(c0.exerciseDetailsString()));
+    public void exerciseToString(){
+        String c0String = ("\t" + "Exercise Name: " + "treadmill"
+                + "\n\t\tDistance: " + "50.0"
+                + "\n\t\tTime: " + "01:01:30");
+        assertTrue(c0String.equals(c0.exerciseToString()));
     }
 }

@@ -2,7 +2,6 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.GymLog;
 import ui.Workout;
 
 import java.io.IOException;
@@ -17,19 +16,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GymLogTest {
     LocalDate ld;
+    LocalDate ld1;
     GymLog g1;
+    GymLog g0;
+    Exercise e1;
     ArrayList<Workout> workoutList;
     ArrayList<Exercise> exerciseList;
-    Exercise e1;
     Workout w1;
 
     @BeforeEach
     public void runBefore() {
         ld = LocalDate.of(1000, 10, 10);
+        ld1 = LocalDate.of(2019, 1, 1);
+        g0 = new GymLog();
         g1 = new GymLog();
+        e1 = new WeightExercise("a", 1, 1, 1);
         workoutList = new ArrayList<>();
         exerciseList = new ArrayList<>();
-        e1 = new WeightExercise("a", 1, 1, 1);
         exerciseList.add(e1);
         w1 = new Workout("a");
         w1.setExerciseList(exerciseList);
@@ -38,10 +41,50 @@ public class GymLogTest {
     }
 
     @Test
-    public void saveTest() throws IOException{
+    public void addWorkoutNullTest() {
+        assertEquals(g0.getGymLogKeyValue(ld), null);
+        g0.addWorkout(ld, "a");
+        assertEquals(g0.getGymLogKeyValue(ld).size(), 1);
+        assertEquals(g0.getGymLogKeyValue(ld).get(0), new Workout("a"));
+    }
+
+    @Test
+    public void addWorkoutTest() {
+        g0.addWorkout(ld, "a");
+        assertEquals(g0.getGymLogKeyValue(ld).size(), 1);
+        assertEquals(g0.getGymLogKeyValue(ld).get(0), new Workout("a"));
+        g0.addWorkout(ld, "b");
+        g0.addWorkout(ld1, "c");
+        assertEquals(g0.getGymLogKeyValue(ld).size(), 2);
+        assertEquals(g0.getGymLogKeyValue(ld1).size(), 1);
+        assertEquals(g0.getGymLogKeyValue(ld).get(0), new Workout("a"));
+        assertEquals(g0.getGymLogKeyValue(ld).get(1), new Workout("b"));
+        assertEquals(g0.getGymLogKeyValue(ld1).get(0), new Workout("c"));
+
+    }
+
+    @Test void workoutListToStringTest() {
+        String g1String = ("a Workout:\n" + w1.workoutToString());
+        assertTrue(g1String.equals(g1.workoutListToString(ld)));
+    }
+
+    @Test
+    public void saveTest(){
         g1.save("/Users/derek/CPSC210/project_n4q1b/outputTest");
-        List<String> outputTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/outputTest"));
-        List<String> saveTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/saveTest"));
+        List<String> outputTestLines = null;
+        try {
+            outputTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/outputTest"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail();
+        }
+        List<String> saveTestLines = null;
+        try {
+            saveTestLines = Files.readAllLines(Paths.get("/Users/derek/CPSC210/project_n4q1b/saveTest"));
+        } catch (IOException e) {
+            e.printStackTrace();
+            fail();
+        }
         assertEquals(saveTestLines, outputTestLines);
     }
 
