@@ -101,6 +101,52 @@
           }
         ],
         "category": "a"
+      },
+      {
+        "exerciseList": [
+          {
+            "exercise type": "WeightExercise",
+            "properties": {
+              "sets": 4,
+              "weight": 0.6,
+              "reps": 3,
+              "name": "curl"
+            }
+          }
+        ],
+        "category": "arms"
+      }
+    ]
+  ],
+  [
+    {
+      "year": 2019,
+      "month": 11,
+      "day": 17
+    },
+    [
+      {
+        "exerciseList": [
+          {
+            "exercise type": "WeightExercise",
+            "properties": {
+              "sets": 2,
+              "weight": 0.2,
+              "reps": 2,
+              "name": "a"
+            }
+          },
+          {
+            "exercise type": "WeightExercise",
+            "properties": {
+              "sets": 2,
+              "weight": 2.0,
+              "reps": 2,
+              "name": "b"
+            }
+          }
+        ],
+        "category": "asdf"
       }
     ]
   ]

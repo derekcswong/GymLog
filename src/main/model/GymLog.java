@@ -46,12 +46,10 @@ public class GymLog extends Observable {
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<Workout> workoutList = gymLog.get(key);
         try {
-            if (workoutList.size() != 0) {
-                for (Workout w : workoutList) {
-                    stringBuilder.append(w.getCategory())
-                            .append(" Workout:\n")
-                            .append(w.workoutToString());
-                }
+            for (Workout w : workoutList) {
+                stringBuilder.append(w.getCategory())
+                        .append(" Workout:\n")
+                        .append(w.workoutToString());
             }
         } catch (NullPointerException e) {
             stringBuilder.append("No Workouts Recorded.");
@@ -67,32 +65,32 @@ public class GymLog extends Observable {
         return gymLog.get(ld);
     }
 
-//    //EFFECTS: saves gymLog as json
-//    public void save(String directory) {
-//        try (FileWriter writer = new FileWriter(directory)) {
-//            Gson gson = new GsonBuilder()
-//                    .setPrettyPrinting()
-//                    .enableComplexMapKeySerialization()
-//                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
-//                    .create();
-//            gson.toJson(this.gymLog, writer);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    //EFFECTS: takes json file and converts it into gymLog format HashMap<LocalDate, ArrayList<Workout>>
-//    public void load(String directory) {
-//        try (FileReader reader = new FileReader(directory)) {
-//            Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
-//            }.getType();
-//            Gson gson = new GsonBuilder()
-//                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
-//                    .create();
-//            gymLog = gson.fromJson(reader, mapType);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    //EFFECTS: saves gymLog as json
+    public void save(String directory) {
+        try (FileWriter writer = new FileWriter(directory)) {
+            Gson gson = new GsonBuilder()
+                    .setPrettyPrinting()
+                    .enableComplexMapKeySerialization()
+                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
+                    .create();
+            gson.toJson(this.gymLog, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //EFFECTS: takes json file and converts it into gymLog format HashMap<LocalDate, ArrayList<Workout>>
+    public void load(String directory) {
+        try (FileReader reader = new FileReader(directory)) {
+            Type mapType = new TypeToken<HashMap<LocalDate, ArrayList<Workout>>>() {
+            }.getType();
+            Gson gson = new GsonBuilder()
+                    .registerTypeAdapter(Exercise.class, new AbstractExerciseAdapter())
+                    .create();
+            gymLog = gson.fromJson(reader, mapType);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

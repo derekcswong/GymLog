@@ -9,6 +9,7 @@ import java.lang.reflect.Type;
 
 public class AbstractExerciseAdapter implements JsonSerializer<Exercise>, JsonDeserializer<Exercise> {
     @Override
+    //EFFECTS: serializes HashMap<LocalDate, ArrayList<Workout>>
     public JsonElement serialize(Exercise src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
         result.add("exercise type", new JsonPrimitive(src.getClass().getSimpleName()));
@@ -18,6 +19,7 @@ public class AbstractExerciseAdapter implements JsonSerializer<Exercise>, JsonDe
     }
 
     @Override
+    //EFFECTS: deserializes HashMap<LocalDate, ArrayList<Workout>>
     public Exercise deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
